@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>DOM</title>
+</head>
+<body>
+    <h1 id="titulo">Curso Desarrollo Entorno Web</h1>
+    <p id="parrafo01">Aprendiendo DOM</p>
+    <span id="span">Fin de semana</span>
+    <script>
+        console.log(document);  //DOM Origen
+        console.log(document.title); //Titulo
+        console.log(document.body); //Contenido Body
+        console.log(document.body.childNodes); //Mostrar nodos incluye espacios/texto
+        console.log(document.body.children); //Solo elementos 
+
+        //document.body.style.fontSize="18px"
+        //document.getElementById("titulo").style.fontSize="32px"
+
+        //document.body.firstElementChild
+        //document.body.lastElementChild
+
+
+        //getElementById
+        //const titulo=document.getElementById("titulo");
+        //titulo.textContent="Curso JS";
+
+        
+    </script>
+</body>
+</html>

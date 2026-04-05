@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Clase 5 - Manejadores de eventos y listeners</title>
+  <style>
+    body { font-family: Arial, sans-serif; margin: 20px; background: #f8f9fa; color: #222; }
+    h1, h2 { color: #264653; }
+    .bloque { background: white; border-radius: 10px; padding: 16px; margin-bottom: 18px; border: 1px solid #ddd; box-shadow: 0 2px 6px rgba(0,0,0,.05); }
+    button, input { padding: 8px 12px; margin: 4px; }
+    .salida { margin-top: 10px; padding: 10px; background: #eef6f7; min-height: 24px; border-left: 4px solid #2a9d8f; }
+    .panel { width: 200px; height: 100px; display: flex; align-items: center; justify-content: center; border: 2px dashed #999; margin-top: 10px; }
+    ul { padding-left: 20px; }
+    li { margin: 4px 0; }
+  </style>
+</head>
+<body>
+  <h1>Clase 5 - Manejadores de eventos y addEventListener</h1>
+  <p>Aquí se trabajan eventos con funciones nombradas, anónimas y múltiples listeners.</p>
+
+  <div class="bloque">
+    <h2>Ejercicio 1 - Manejador con función nombrada</h2>
+    <p><strong>Básico:</strong> Asociar un botón a una función declarada.</p>
+    <button id="btnMensaje">Mostrar mensaje</button>
+    <div class="salida" id="salidaMensaje"></div>
+  </div>
+
+  <div class="bloque">
+    <h2>Ejercicio 2 - addEventListener con función anónima</h2>
+    <p><strong>Básico:</strong> Cambiar el fondo del panel al hacer clic.</p>
+    <button id="btnColor">Cambiar color</button>
+    <div class="panel" id="panelColor">Panel</div>
+  </div>
+
+  <div class="bloque">
+    <h2>Ejercicio 3 - Dos listeners en un mismo botón</h2>
+    <p><strong>Intermedio:</strong> Un clic debe ejecutar dos acciones diferentes.</p>
+    <button id="btnMulti">Ejecutar listeners</button>
+    <div class="salida" id="salidaMulti"></div>
+  </div>
+
+  <div class="bloque">
+    <h2>Ejercicio 4 - Remover listener</h2>
+    <p><strong>Intermedio:</strong> Activar y desactivar el evento de un botón.</p>
+    <button id="btnActivar">Activar saludo</button>
+    <button id="btnDesactivar">Desactivar saludo</button>
+    <button id="btnSaludar">Saludar</button>
+    <div class="salida" id="salidaRemover"></div>
+  </div>
+
+  <div class="bloque">
+    <h2>Ejercicio 5 - Evento sobre lista dinámica</h2>
+    <p><strong>Intermedio:</strong> Agregar nombres a una lista y responder al clic sobre cada elemento.</p>
+    <input type="text" id="txtElemento" placeholder="Nuevo elemento" />
+    <button id="btnAgregar">Agregar</button>
+    <ul id="listaElementos"></ul>
+    <div class="salida" id="salidaLista"></div>
+  </div>
+
+  <div class="bloque">
+    <h2>Ejercicio 6 - Evento input + validación en tiempo real</h2>
+    <p><strong>Intermedio:</strong> Mostrar si el texto tiene al menos 5 caracteres.</p>
+    <input type="text" id="txtValidar" placeholder="Mínimo 5 caracteres" />
+    <div class="salida" id="salidaValidacion"></div>
+  </div>
+
+  <div class="bloque">
+    <h2>Ejercicio 7 - Delegación de eventos sencilla</h2>
+    <p><strong>Intermedio:</strong> Detectar qué botón fue presionado dentro del contenedor.</p>
+    <div id="contenedorBotones">
+      <button data-accion="guardar">Guardar</button>
+      <button data-accion="editar">Editar</button>
+      <button data-accion="eliminar">Eliminar</button>
+    </div>
+    <div class="salida" id="salidaDelegacion"></div>
+  </div>
+
+  
+</body>
+</html>

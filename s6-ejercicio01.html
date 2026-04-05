@@ -1,0 +1,91 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Clase 5 - Introducción y tipos de eventos</title>
+  <style>
+    body { font-family: Arial, sans-serif; margin: 20px; background: #f7f7f9; color: #222; }
+    h1, h2 { color: #1d3557; }
+    .bloque { background: #fff; border: 1px solid #ddd; border-radius: 10px; padding: 16px; margin-bottom: 18px; box-shadow: 0 2px 8px rgba(0,0,0,.05); }
+    button, input, select { padding: 8px 12px; margin: 6px 0; }
+    .caja { width: 160px; height: 100px; background: #e9ecef; border: 2px dashed #999; display: flex; align-items: center; justify-content: center; margin-top: 8px; }
+    .salida { margin-top: 10px; padding: 10px; background: #f1f3f5; border-left: 4px solid #457b9d; min-height: 24px; }
+    .galeria img { width: 220px; height: 140px; object-fit: cover; border-radius: 10px; display: block; margin-top: 10px; }
+    .contador { font-size: 1.3rem; font-weight: bold; }
+    code { background: #eef; padding: 2px 6px; border-radius: 4px; }
+  </style>
+</head>
+<body>
+  <h1>Clase 5 - Ejercicios de Introducción y Tipos de Eventos</h1>
+  <p>Archivo orientado a ejercicios básicos e intermedios sobre eventos de JavaScript.</p>
+
+  <div class="bloque">
+    <h2>Ejercicio 1 - Evento click</h2>
+    <p><strong>Básico:</strong> Mostrar un mensaje cuando se hace clic en el botón.</p>
+    <button id="btnSaludo">Haz clic aquí</button>
+    <div class="salida" id="salidaSaludo"></div>
+  </div>
+
+  <div class="bloque">
+    <h2>Ejercicio 2 - Evento dblclick</h2>
+    <p><strong>Básico:</strong> Cambiar color de la caja al hacer doble clic.</p>
+    <div class="caja" id="cajaDobleClick">Doble clic</div>
+  </div>
+
+  <div class="bloque">
+    <h2>Ejercicio 3 - Eventos mouseover y mouseout</h2>
+    <p><strong>Básico:</strong> Cambiar el texto al pasar el mouse y restaurarlo al salir.</p>
+    <div class="caja" id="zonaMouse">Pasa el mouse</div>
+    <div class="salida" id="salidaMouse"></div>
+  </div>
+
+  <div class="bloque">
+    <h2>Ejercicio 4 - Evento input</h2>
+    <p><strong>Intermedio:</strong> Contar la cantidad de caracteres escritos.</p>
+    <input type="text" id="txtNombre" placeholder="Escribe tu nombre" />
+    <div class="salida" id="salidaInput"></div>
+  </div>
+
+  <div class="bloque">
+    <h2>Ejercicio 5 - Evento change</h2>
+    <p><strong>Básico:</strong> Mostrar la opción seleccionada.</p>
+    <select id="selectCurso">
+      <option value="">Seleccione un curso</option>
+      <option>HTML</option>
+      <option>CSS</option>
+      <option>JavaScript</option>
+    </select>
+    <div class="salida" id="salidaSelect"></div>
+  </div>
+
+  <div class="bloque">
+    <h2>Ejercicio 6 - Evento keydown</h2>
+    <p><strong>Intermedio:</strong> Detectar la tecla presionada.</p>
+    <input type="text" id="txtTecla" placeholder="Presiona una tecla aquí" />
+    <div class="salida" id="salidaTecla"></div>
+  </div>
+
+  <div class="bloque">
+    <h2>Ejercicio 7 - Evento submit</h2>
+    <p><strong>Intermedio:</strong> Validar un formulario simple antes de enviarlo.</p>
+    <form id="formRegistro">
+      <input type="text" id="nombreRegistro" placeholder="Nombre" />
+      <input type="email" id="correoRegistro" placeholder="Correo" />
+      <button type="submit">Registrar</button>
+    </form>
+    <div class="salida" id="salidaForm"></div>
+  </div>
+
+  <div class="bloque">
+    <h2>Ejercicio 8 - Mini reto combinado</h2>
+    <p><strong>Intermedio:</strong> Crear un contador con botones de aumentar, disminuir y reiniciar.</p>
+    <div class="contador" id="contador">0</div>
+    <button id="btnMas">+1</button>
+    <button id="btnMenos">-1</button>
+    <button id="btnReset">Reiniciar</button>
+  </div>
+
+  
+</body>
+</html>

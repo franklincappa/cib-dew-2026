@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Clase 6 - Arreglos y métodos Array</title>
+  <style>
+    body { font-family: Arial, sans-serif; margin: 20px; background: #f6f8fb; color: #222; }
+    h1, h2 { color: #1b4965; }
+    .bloque { background: #fff; border: 1px solid #d8dee9; border-radius: 10px; padding: 16px; margin-bottom: 18px; box-shadow: 0 2px 6px rgba(0,0,0,.05); }
+    button, input { padding: 8px 12px; margin: 4px; }
+    .salida { margin-top: 10px; padding: 10px; background: #eef4ff; min-height: 26px; border-left: 4px solid #3a86ff; white-space: pre-wrap; }
+    table { border-collapse: collapse; width: 100%; margin-top: 10px; }
+    th, td { border: 1px solid #ccc; padding: 8px; text-align: left; }
+    th { background: #eaf2ff; }
+  </style>
+</head>
+<body>
+  <h1>Clase 6 - Introducción a arreglos y clase Array</h1>
+  <p>Archivo orientado a ejercicios básicos e intermedios sobre creación, recorrido y métodos de arreglos.</p>
+
+  <div class="bloque">
+    <h2>Ejercicio 1 - Crear y mostrar un arreglo</h2>
+    <p><strong>Básico:</strong> Mostrar un arreglo de cursos en pantalla.</p>
+    <button id="btnCursos">Mostrar cursos</button>
+    <div class="salida" id="salidaCursos"></div>
+  </div>
+
+  <div class="bloque">
+    <h2>Ejercicio 2 - Recorrer arreglo con for y forEach</h2>
+    <p><strong>Básico:</strong> Mostrar una lista de nombres usando distintos recorridos.</p>
+    <button id="btnRecorrer">Recorrer nombres</button>
+    <div class="salida" id="salidaRecorrer"></div>
+  </div>
+
+  <div class="bloque">
+    <h2>Ejercicio 3 - push, pop, shift y unshift</h2>
+    <p><strong>Intermedio:</strong> Modificar un arreglo de tareas y ver el resultado.</p>
+    <button id="btnOperaciones">Ejecutar operaciones</button>
+    <div class="salida" id="salidaOperaciones"></div>
+  </div>
+
+  <div class="bloque">
+    <h2>Ejercicio 4 - Buscar elementos con includes e indexOf</h2>
+    <p><strong>Básico:</strong> Verificar si un producto existe en el arreglo.</p>
+    <input type="text" id="txtBuscar" placeholder="Buscar producto" />
+    <button id="btnBuscar">Buscar</button>
+    <div class="salida" id="salidaBuscar"></div>
+  </div>
+
+  <div class="bloque">
+    <h2>Ejercicio 5 - map y filter</h2>
+    <p><strong>Intermedio:</strong> Trabajar con un arreglo de números.</p>
+    <button id="btnMapFilter">Ejecutar map y filter</button>
+    <div class="salida" id="salidaMapFilter"></div>
+  </div>
+
+  <div class="bloque">
+    <h2>Ejercicio 6 - Arreglo de objetos</h2>
+    <p><strong>Intermedio:</strong> Mostrar estudiantes y filtrar aprobados.</p>
+    <button id="btnEstudiantes">Ver estudiantes</button>
+    <div class="salida" id="salidaEstudiantes"></div>
+  </div>
+
+  <div class="bloque">
+    <h2>Ejercicio 7 - Registro dinámico de elementos</h2>
+    <p><strong>Intermedio:</strong> Agregar ciudades a un arreglo y mostrarlas.</p>
+    <input type="text" id="txtCiudad" placeholder="Ingrese una ciudad" />
+    <button id="btnAgregarCiudad">Agregar ciudad</button>
+    <button id="btnMostrarCiudades">Mostrar ciudades</button>
+    <div class="salida" id="salidaCiudades"></div>
+  </div>
+
+  <div class="bloque">
+    <h2>Ejercicio 8 - Mini práctica: carrito simple</h2>
+    <p><strong>Intermedio:</strong> Agregar productos, calcular total y listar.</p>
+    <input type="text" id="txtProducto" placeholder="Producto" />
+    <input type="number" id="txtPrecio" placeholder="Precio" />
+    <button id="btnAgregarProducto">Agregar</button>
+    <button id="btnVerCarrito">Ver carrito</button>
+    <div class="salida" id="salidaCarrito"></div>
+  </div>
+
+  
+</body>
+</html>

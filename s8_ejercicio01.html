@@ -1,0 +1,346 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Ejercicios DOM: childNodes y nodos relacionados</title>
+  <style>
+    * { box-sizing: border-box; }
+    body {
+      margin: 0;
+      font-family: Arial, Helvetica, sans-serif;
+      background: #f3f6fb;
+      color: #1f2937;
+    }
+    .contenedor {
+      max-width: 1200px;
+      margin: 30px auto;
+      padding: 0 18px 40px;
+    }
+    .hero {
+      background: linear-gradient(135deg, #2563eb, #1d4ed8);
+      color: white;
+      padding: 28px;
+      border-radius: 18px;
+      box-shadow: 0 12px 28px rgba(37, 99, 235, .22);
+      margin-bottom: 24px;
+    }
+    .hero h1 {
+      margin: 0 0 8px;
+      font-size: 34px;
+    }
+    .hero p {
+      margin: 0;
+      line-height: 1.6;
+      opacity: .95;
+    }
+    .nota {
+      background: #fff7ed;
+      border: 1px solid #fdba74;
+      color: #9a3412;
+      border-radius: 14px;
+      padding: 14px 16px;
+      margin: 18px 0 24px;
+      line-height: 1.5;
+    }
+    .grid {
+      display: grid;
+      grid-template-columns: repeat(2, 1fr);
+      gap: 22px;
+    }
+    .card {
+      background: white;
+      border: 1px solid #e5e7eb;
+      border-radius: 18px;
+      padding: 20px;
+      box-shadow: 0 8px 20px rgba(15, 23, 42, .06);
+    }
+    .card h2 {
+      margin-top: 0;
+      margin-bottom: 10px;
+      font-size: 24px;
+      color: #111827;
+    }
+    .card h3 {
+      margin: 18px 0 10px;
+      font-size: 18px;
+      color: #1d4ed8;
+    }
+    .explicacion {
+      font-size: 14px;
+      line-height: 1.6;
+      color: #4b5563;
+      margin-bottom: 12px;
+    }
+    .caja {
+      border: 2px dashed #93c5fd;
+      background: #eff6ff;
+      border-radius: 14px;
+      padding: 16px;
+      margin: 12px 0;
+    }
+    ul, ol {
+      padding-left: 22px;
+    }
+    li {
+      margin-bottom: 8px;
+    }
+    .botones {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 10px;
+      margin: 12px 0;
+    }
+    button {
+      border: none;
+      border-radius: 10px;
+      padding: 11px 14px;
+      background: #2563eb;
+      color: white;
+      font-weight: bold;
+      cursor: pointer;
+    }
+    button:hover {
+      background: #1d4ed8;
+    }
+    .secundario {
+      background: #6b7280;
+    }
+    .secundario:hover {
+      background: #4b5563;
+    }
+    .danger {
+      background: #dc2626;
+    }
+    .danger:hover {
+      background: #b91c1c;
+    }
+    .success {
+      background: #16a34a;
+    }
+    .success:hover {
+      background: #15803d;
+    }
+    .salida {
+      margin-top: 12px;
+      background: #0f172a;
+      color: #e2e8f0;
+      border-radius: 12px;
+      padding: 14px;
+      min-height: 60px;
+      white-space: pre-wrap;
+      font-family: Consolas, monospace;
+      font-size: 14px;
+    }
+    .codigo {
+      background: #111827;
+      color: #d1fae5;
+      border-radius: 12px;
+      padding: 14px;
+      overflow-x: auto;
+      font-family: Consolas, monospace;
+      font-size: 13px;
+      line-height: 1.5;
+      margin-top: 10px;
+      white-space: pre-wrap;
+    }
+    .tabla {
+      width: 100%;
+      border-collapse: collapse;
+      margin-top: 14px;
+    }
+    .tabla th, .tabla td {
+      border: 1px solid #d1d5db;
+      padding: 10px;
+      text-align: left;
+      vertical-align: top;
+    }
+    .tabla th {
+      background: #dbeafe;
+      color: #1e3a8a;
+    }
+    .resaltado {
+      background: #fef3c7;
+      padding: 2px 6px;
+      border-radius: 999px;
+      font-weight: bold;
+    }
+    @media (max-width: 900px) {
+      .grid { grid-template-columns: 1fr; }
+      .hero h1 { font-size: 28px; }
+    }
+  </style>
+</head>
+<body>
+  <div class="contenedor">
+    <div class="hero">
+      <h1>Ejercicios DOM: childNodes y nodos relacionados</h1>
+      <p>
+        Archivo de apoyo para explicar <strong>parentNode</strong>, <strong>childNodes</strong>,
+        <strong>firstChild</strong>, <strong>lastChild</strong>, <strong>nextSibling</strong>,
+        <strong>previousSibling</strong>, <strong>appendChild()</strong>, <strong>removeChild()</strong>,
+        <strong>hasChildNodes()</strong>, <strong>createElement()</strong> y <strong>createTextNode()</strong>.
+      </p>
+    </div>
+
+    <div class="nota">
+      <strong>Ojo pedagógico:</strong> <code>childNodes</code> devuelve todos los nodos, incluyendo espacios y saltos de línea como nodos de texto.
+      Por eso a veces salen más nodos de los que uno espera. Ese clásico “yo solo veo 3 li” no es error, es DOM haciendo de las suyas.
+    </div>
+
+    <table class="tabla">
+      <thead>
+        <tr>
+          <th>Palabra clave</th>
+          <th>¿Para qué sirve?</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr><td>parentNode</td><td>Obtiene el nodo padre de un elemento.</td></tr>
+        <tr><td>childNodes</td><td>Obtiene todos los nodos hijos, incluso textos y espacios.</td></tr>
+        <tr><td>firstChild</td><td>Devuelve el primer nodo hijo.</td></tr>
+        <tr><td>lastChild</td><td>Devuelve el último nodo hijo.</td></tr>
+        <tr><td>nextSibling</td><td>Devuelve el siguiente nodo hermano.</td></tr>
+        <tr><td>previousSibling</td><td>Devuelve el nodo hermano anterior.</td></tr>
+        <tr><td>appendChild(node)</td><td>Agrega un nodo hijo al final.</td></tr>
+        <tr><td>removeChild(node)</td><td>Elimina un nodo hijo específico.</td></tr>
+        <tr><td>hasChildNodes()</td><td>Indica si un nodo tiene hijos.</td></tr>
+        <tr><td>createElement()</td><td>Crea un nuevo elemento HTML.</td></tr>
+        <tr><td>createTextNode()</td><td>Crea un nodo de texto.</td></tr>
+      </tbody>
+    </table>
+
+    <div class="grid">
+      <div class="card">
+        <h2>Ejercicio 1: Explorar childNodes</h2>
+        <p class="explicacion">
+          Este ejercicio sirve para mostrar cuántos nodos tiene un contenedor y qué tipo de nodos existen.
+          Ideal para explicar por qué <span class="resaltado">childNodes</span> no siempre coincide con lo que “vemos” en pantalla.
+        </p>
+
+        <div class="caja" id="contenedor1">
+          <h3>Tareas del día</h3>
+          <ul>
+            <li>Revisar correos</li>
+            <li>Preparar informe</li>
+            <li>Enviar reporte</li>
+          </ul>
+        </div>
+
+        <div class="botones">
+          <button onclick="verChildNodes()">Ver childNodes</button>
+          <button class="secundario" onclick="verPrimerUltimo()">Ver firstChild y lastChild</button>
+          <button class="secundario" onclick="verPadre()">Ver parentNode del UL</button>
+        </div>
+
+        <div class="salida" id="salida1">Aquí aparecerá el resultado...</div>
+
+        <div class="codigo">// Ideas para explicar:
+// contenedor.childNodes.length
+// contenedor.firstChild
+// contenedor.lastChild
+// ul.parentNode</div>
+      </div>
+
+      <div class="card">
+        <h2>Ejercicio 2: Recorrer hermanos</h2>
+        <p class="explicacion">
+          Aquí se explica <strong>nextSibling</strong> y <strong>previousSibling</strong>.
+          Como incluye nodos de texto, a veces conviene mostrar el tipo del nodo para que el alumno no piense que JavaScript se volvió loco.
+        </p>
+
+        <div class="caja">
+          <p id="parrafoA">Párrafo A</p>
+          <p id="parrafoB">Párrafo B</p>
+          <p id="parrafoC">Párrafo C</p>
+        </div>
+
+        <div class="botones">
+          <button onclick="verHermanoSiguiente()">nextSibling de B</button>
+          <button class="secundario" onclick="verHermanoAnterior()">previousSibling de B</button>
+        </div>
+
+        <div class="salida" id="salida2">Aquí aparecerá el resultado...</div>
+
+        <div class="codigo">// pB.nextSibling
+// pB.previousSibling
+// nodeType: 1 = elemento, 3 = texto</div>
+      </div>
+
+      <div class="card">
+        <h2>Ejercicio 3: Crear y agregar nodos</h2>
+        <p class="explicacion">
+          Este es el ejercicio más útil para aplicaciones reales. Permite crear elementos con
+          <strong>createElement()</strong>, texto con <strong>createTextNode()</strong> y agregarlos con <strong>appendChild()</strong>.
+        </p>
+
+        <div class="caja">
+          <input type="text" id="txtNuevaTarea" placeholder="Escriba una nueva tarea" style="width:100%;padding:10px;border-radius:10px;border:1px solid #cbd5e1;">
+          <ul id="listaTareas">
+            <li>Diseñar interfaz</li>
+            <li>Probar formulario</li>
+          </ul>
+        </div>
+
+        <div class="botones">
+          <button class="success" onclick="agregarTarea()">Agregar tarea</button>
+          <button class="danger" onclick="eliminarUltimaTarea()">Eliminar última tarea</button>
+          <button class="secundario" onclick="verSiTieneHijos()">hasChildNodes()</button>
+        </div>
+
+        <div class="salida" id="salida3">Aquí aparecerá el resultado...</div>
+
+        <div class="codigo">// let li = document.createElement('li');
+// let texto = document.createTextNode('Nueva tarea');
+// li.appendChild(texto);
+// lista.appendChild(li);</div>
+      </div>
+
+      <div class="card">
+        <h2>Ejercicio 4: Caso real mini - listado dinámico</h2>
+        <p class="explicacion">
+          Caso simple de entorno web real: agregar productos a una lista y quitarlos. Aquí el alumno entiende
+          que estas funciones no son teoría decorativa; se usan para construir interfaces dinámicas.
+        </p>
+
+        <div class="caja">
+          <input type="text" id="txtProducto" placeholder="Nombre del producto" style="width:100%;padding:10px;border-radius:10px;border:1px solid #cbd5e1;">
+          <div class="botones">
+            <button class="success" onclick="agregarProducto()">Agregar producto</button>
+            <button class="danger" onclick="eliminarPrimerProducto()">Eliminar primer producto</button>
+          </div>
+          <ol id="listaProductos">
+            <li>Mouse</li>
+            <li>Teclado</li>
+          </ol>
+        </div>
+
+        <div class="salida" id="salida4">Aquí aparecerá el resultado...</div>
+
+        <div class="codigo">// appendChild()
+// removeChild()
+// firstChild
+// childNodes.length</div>
+      </div>
+    </div>
+
+    <div class="card" style="margin-top:22px;">
+      <h2>Propuesta de dinámica para clase</h2>
+      <ol>
+        <li><strong>Primero:</strong> mostrar visualmente un contenedor con espacios, títulos y listas.</li>
+        <li><strong>Luego:</strong> ejecutar <code>childNodes</code> y comparar lo visual con lo que devuelve el DOM.</li>
+        <li><strong>Después:</strong> crear un elemento nuevo con <code>createElement()</code> + <code>createTextNode()</code>.</li>
+        <li><strong>Finalmente:</strong> eliminar un hijo con <code>removeChild()</code> y validar con <code>hasChildNodes()</code>.</li>
+      </ol>
+
+      <div class="codigo">Reto rápido:
+1. Crear un botón que agregue un &lt;li&gt; con texto personalizado.
+2. Crear otro botón que elimine el segundo elemento de una lista.
+3. Mostrar cuántos childNodes tiene el contenedor antes y después.
+4. Mostrar el parentNode de un elemento seleccionado.</div>
+    </div>
+  </div>
+
+  
+</body>
+</html>

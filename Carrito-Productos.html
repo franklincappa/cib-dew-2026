@@ -1,0 +1,390 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Registro de Productos</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      background: #eef2f7;
+      margin: 0;
+      padding: 20px;
+    }
+
+    .contenedor {
+      max-width: 1100px;
+      margin: auto;
+      background: white;
+      padding: 25px;
+      border-radius: 12px;
+      box-shadow: 0 4px 14px rgba(0,0,0,0.08);
+    }
+
+    h1, h2 {
+      color: #333;
+    }
+
+    .grid {
+      display: grid;
+      grid-template-columns: repeat(2, 1fr);
+      gap: 15px;
+    }
+
+    .grupo {
+      margin-bottom: 15px;
+    }
+
+    label {
+      display: block;
+      font-weight: bold;
+      margin-bottom: 6px;
+    }
+
+    input, select {
+      width: 100%;
+      padding: 10px;
+      border: 1px solid #bbb;
+      border-radius: 8px;
+      box-sizing: border-box;
+    }
+
+    input:focus, select:focus {
+      outline: none;
+      border-color: #007bff;
+    }
+
+    .error {
+      color: red;
+      font-size: 13px;
+      margin-top: 4px;
+    }
+
+    .acciones {
+      margin-top: 10px;
+    }
+
+    button {
+      padding: 10px 16px;
+      border: none;
+      background: #007bff;
+      color: white;
+      border-radius: 8px;
+      cursor: pointer;
+      font-size: 14px;
+    }
+
+    button:hover {
+      background: #0056b3;
+    }
+
+    .btn-eliminar {
+      background: #dc3545;
+      padding: 6px 10px;
+      font-size: 13px;
+    }
+
+    .btn-eliminar:hover {
+      background: #b02a37;
+    }
+
+    .mensaje {
+      margin-top: 15px;
+      font-weight: bold;
+    }
+
+    .barra-busqueda {
+      margin: 20px 0;
+    }
+
+    table {
+      width: 100%;
+      border-collapse: collapse;
+      margin-top: 10px;
+    }
+
+    table th, table td {
+      border: 1px solid #ddd;
+      padding: 10px;
+      text-align: center;
+    }
+
+    table th {
+      background: #f1f3f5;
+    }
+
+    .sin-datos {
+      text-align: center;
+      padding: 20px;
+      color: #666;
+    }
+
+    @media (max-width: 700px) {
+      .grid {
+        grid-template-columns: 1fr;
+      }
+    }
+  </style>
+</head>
+<body>
+
+  <div class="contenedor">
+    <h1>Registro de Productos</h1>
+
+    <form id="formProducto">
+      <div class="grid">
+        <div class="grupo">
+          <label for="nombre">Nombre del producto</label>
+          <input type="text" id="nombre" placeholder="Ejemplo: Laptop">
+          <div id="errorNombre" class="error"></div>
+        </div>
+
+        <div class="grupo">
+          <label for="precio">Precio</label>
+          <input type="number" id="precio" placeholder="Ejemplo: 2500">
+          <div id="errorPrecio" class="error"></div>
+        </div>
+
+        <div class="grupo">
+          <label for="categoria">Categoría</label>
+          <select id="categoria">
+            <option value="">Seleccione</option>
+            <option value="Tecnología">Tecnología</option>
+            <option value="Accesorios">Accesorios</option>
+            <option value="Oficina">Oficina</option>
+            <option value="Hogar">Hogar</option>
+          </select>
+          <div id="errorCategoria" class="error"></div>
+        </div>
+
+        <div class="grupo">
+          <label for="stock">Stock</label>
+          <input type="number" id="stock" placeholder="Ejemplo: 10">
+          <div id="errorStock" class="error"></div>
+        </div>
+      </div>
+
+      <div class="acciones">
+        <button type="submit">Registrar producto</button>
+      </div>
+    </form>
+
+    <div id="mensaje" class="mensaje"></div>
+
+    <div class="barra-busqueda">
+      <label for="buscar">Buscar producto por nombre</label>
+      <input type="text" id="buscar" placeholder="Escriba para buscar...">
+    </div>
+
+    <h2>Listado de productos</h2>
+    <table>
+      <thead>
+        <tr>
+          <th>ID</th>
+          <th>Nombre</th>
+          <th>Precio</th>
+          <th>Categoría</th>
+          <th>Stock</th>
+          <th>Acción</th>
+        </tr>
+      </thead>
+      <tbody id="tablaProductos"></tbody>
+    </table>
+  </div>
+
+  <script>
+    let productos = [
+      { id: 1, nombre: "Laptop", precio: 2500, categoria: "Tecnología", stock: 5 },
+      { id: 2, nombre: "Mouse", precio: 80, categoria: "Accesorios", stock: 20 },
+      { id: 3, nombre: "Escritorio", precio: 600, categoria: "Oficina", stock: 3 }
+    ];
+
+    const formProducto = document.getElementById("formProducto");
+    const nombre = document.getElementById("nombre");
+    const precio = document.getElementById("precio");
+    const categoria = document.getElementById("categoria");
+    const stock = document.getElementById("stock");
+    const buscar = document.getElementById("buscar");
+    const tablaProductos = document.getElementById("tablaProductos");
+    const mensaje = document.getElementById("mensaje");
+
+    const errorNombre = document.getElementById("errorNombre");
+    const errorPrecio = document.getElementById("errorPrecio");
+    const errorCategoria = document.getElementById("errorCategoria");
+    const errorStock = document.getElementById("errorStock");
+
+    function validarNombre() {
+      const valor = nombre.value.trim();
+
+      if (valor === "") {
+        errorNombre.textContent = "El nombre es obligatorio.";
+        return false;
+      }
+
+      if (valor.length < 3) {
+        errorNombre.textContent = "El nombre debe tener al menos 3 caracteres.";
+        return false;
+      }
+
+      errorNombre.textContent = "";
+      return true;
+    }
+
+    function validarPrecio() {
+      const valor = Number(precio.value);
+
+      if (precio.value.trim() === "") {
+        errorPrecio.textContent = "El precio es obligatorio.";
+        return false;
+      }
+
+      if (valor <= 0) {
+        errorPrecio.textContent = "El precio debe ser mayor que cero.";
+        return false;
+      }
+
+      errorPrecio.textContent = "";
+      return true;
+    }
+
+    function validarCategoria() {
+      if (categoria.value === "") {
+        errorCategoria.textContent = "Seleccione una categoría.";
+        return false;
+      }
+
+      errorCategoria.textContent = "";
+      return true;
+    }
+
+    function validarStock() {
+      const valor = Number(stock.value);
+
+      if (stock.value.trim() === "") {
+        errorStock.textContent = "El stock es obligatorio.";
+        return false;
+      }
+
+      if (valor < 0) {
+        errorStock.textContent = "El stock no puede ser negativo.";
+        return false;
+      }
+
+      errorStock.textContent = "";
+      return true;
+    }
+
+    function limpiarFormulario() {
+      formProducto.reset();
+    }
+
+    function obtenerNuevoId() {
+      if (productos.length === 0) {
+        return 1;
+      }
+
+      return productos[productos.length - 1].id + 1;
+    }
+
+    function renderizarTabla(lista) {
+      tablaProductos.innerHTML = "";
+
+      if (lista.length === 0) {
+        tablaProductos.innerHTML = `
+          <tr>
+            <td colspan="6" class="sin-datos">No se encontraron productos.</td>
+          </tr>
+        `;
+        return;
+      }
+
+      lista.forEach(producto => {
+        const fila = `
+          <tr>
+            <td>${producto.id}</td>
+            <td>${producto.nombre}</td>
+            <td>S/ ${producto.precio}</td>
+            <td>${producto.categoria}</td>
+            <td>${producto.stock}</td>
+            <td>
+              <button class="btn-eliminar" onclick="eliminarProducto(${producto.id})">Eliminar</button>
+            </td>
+          </tr>
+        `;
+        tablaProductos.innerHTML += fila;
+      });
+    }
+
+    function eliminarProducto(id) {
+      const indice = productos.findIndex(producto => producto.id === id);
+
+      if (indice !== -1) {
+        productos.splice(indice, 1);
+        renderizarTabla(productos);
+        mensaje.style.color = "red";
+        mensaje.textContent = "Producto eliminado correctamente.";
+      }
+    }
+
+    nombre.addEventListener("input", validarNombre);
+    precio.addEventListener("input", validarPrecio);
+    categoria.addEventListener("change", validarCategoria);
+    stock.addEventListener("input", validarStock);
+
+    formProducto.addEventListener("submit", function (e) {
+      e.preventDefault();
+      mensaje.textContent = "";
+
+      const nombreValido = validarNombre();
+      const precioValido = validarPrecio();
+      const categoriaValida = validarCategoria();
+      const stockValido = validarStock();
+
+      if (!nombreValido || !precioValido || !categoriaValida || !stockValido) {
+        return;
+      }
+
+      const nombreIngresado = nombre.value.trim().toLowerCase();
+
+      const existeProducto = productos.some(producto =>
+        producto.nombre.toLowerCase() === nombreIngresado
+      );
+
+      if (existeProducto) {
+        mensaje.style.color = "red";
+        mensaje.textContent = "Ya existe un producto con ese nombre.";
+        return;
+      }
+
+      const nuevoProducto = {
+        id: obtenerNuevoId(),
+        nombre: nombre.value.trim(),
+        precio: Number(precio.value),
+        categoria: categoria.value,
+        stock: Number(stock.value)
+      };
+
+      productos.push(nuevoProducto);
+      renderizarTabla(productos);
+
+      mensaje.style.color = "green";
+      mensaje.textContent = "Producto registrado correctamente.";
+
+      limpiarFormulario();
+    });
+
+    buscar.addEventListener("keyup", function () {
+      const texto = buscar.value.trim().toLowerCase();
+
+      const productosFiltrados = productos.filter(producto =>
+        producto.nombre.toLowerCase().includes(texto)
+      );
+
+      renderizarTabla(productosFiltrados);
+    });
+
+    renderizarTabla(productos);
+  </script>
+
+</body>
+</html>

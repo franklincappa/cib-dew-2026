@@ -1,0 +1,33 @@
+.carrusel {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 15px;
+  padding: 30px;
+  background: #edf2f4;
+}
+
+.slide {
+  text-align: center;
+}
+
+.slide img {
+  width: 100%;
+  max-width: 900px;
+  border-radius: 12px;
+}
+
+.slide h2 {
+  margin-top: 10px;
+  color: #1d3557;
+}
+
+.carrusel button {
+  font-size: 24px;
+  padding: 10px 15px;
+  border: none;
+  cursor: pointer;
+  background-color: #1d3557;
+  color: white;
+  border-radius: 8px;
+}

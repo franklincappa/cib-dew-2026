@@ -1,0 +1,11 @@
+.seccion-cursos {
+  padding: 40px 20px;
+  text-align: center;
+}
+
+.contenedor-cursos {
+  display: flex;
+  justify-content: center;
+  gap: 20px;
+  flex-wrap: wrap;
+}

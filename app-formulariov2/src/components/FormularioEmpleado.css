@@ -1,0 +1,252 @@
+/* ===== Reset y base ===== */
+* { box-sizing: border-box; }
+
+body {
+  margin: 0;
+  font-family: "Segoe UI", Roboto, Arial, sans-serif;
+  background: #f4f6f8;
+  color: #222;
+}
+
+/* ===== Layout ===== */
+.app-header {
+  background: #1f3a5f;
+  color: #fff;
+  padding: 1rem 2rem;
+}
+.app-header h1 {
+  margin: 0 0 0.75rem 0;
+  font-size: 1.4rem;
+}
+.tabs {
+  display: flex;
+  gap: 0.5rem;
+}
+.tab {
+  background: transparent;
+  color: #fff;
+  border: 1px solid rgba(255, 255, 255, 0.3);
+  padding: 0.5rem 1rem;
+  border-radius: 6px;
+  cursor: pointer;
+  font-size: 0.9rem;
+}
+.tab.active,
+.tab:hover {
+  background: #fff;
+  color: #1f3a5f;
+  font-weight: 600;
+}
+
+.container {
+  max-width: 900px;
+  margin: 1.5rem auto;
+  padding: 0 1rem;
+}
+
+/* ===== Cards ===== */
+.card {
+  background: #fff;
+  border-radius: 8px;
+  padding: 1.5rem 2rem;
+  box-shadow: 0 2px 6px rgba(0, 0, 0, 0.06);
+  margin-bottom: 1.5rem;
+}
+.card h2 {
+  margin-top: 0;
+  color: #1f3a5f;
+  border-bottom: 2px solid #e5e9ef;
+  padding-bottom: 0.5rem;
+}
+.card h3 {
+  margin-top: 2rem;
+  color: #1f3a5f;
+}
+.descripcion { color: #666; font-size: 0.95rem; }
+
+/* ===== Form ===== */
+fieldset {
+  border: 1px solid #d8dde3;
+  border-radius: 6px;
+  padding: 1rem 1.25rem;
+  margin: 0 0 1rem 0;
+}
+legend {
+  font-weight: 600;
+  color: #1f3a5f;
+  padding: 0 0.5rem;
+}
+.form-row {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 1rem;
+}
+@media (max-width: 600px) {
+  .form-row { grid-template-columns: 1fr; }
+}
+.form-group {
+  display: flex;
+  flex-direction: column;
+  margin-bottom: 0.85rem;
+}
+.form-group label {
+  font-weight: 500;
+  margin-bottom: 0.3rem;
+  font-size: 0.9rem;
+}
+.form-group input[type="text"],
+.form-group input[type="email"],
+.form-group input[type="tel"],
+.form-group input[type="number"],
+.form-group input[type="date"],
+.form-group select,
+.form-group textarea {
+  padding: 0.5rem 0.7rem;
+  border: 1px solid #c8cfd8;
+  border-radius: 4px;
+  font-size: 0.95rem;
+  font-family: inherit;
+}
+.form-group input:focus,
+.form-group select:focus,
+.form-group textarea:focus {
+  outline: 2px solid #2b6cb0;
+  border-color: #2b6cb0;
+}
+.form-group small {
+  font-size: 0.8rem;
+  color: #888;
+  margin-top: 0.2rem;
+}
+
+/* Radio y checkbox */
+.radio-group,
+.checkbox-grid {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 1rem;
+}
+.checkbox-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(140px, 1fr));
+  gap: 0.4rem;
+}
+.checkbox-item,
+.checkbox-group label,
+.radio-group label {
+  display: flex;
+  align-items: center;
+  gap: 0.4rem;
+  font-weight: normal;
+  font-size: 0.9rem;
+  cursor: pointer;
+}
+
+/* Errores y éxito */
+.error {
+  color: #b91c1c;
+  font-size: 0.8rem;
+  margin-top: 0.25rem;
+}
+.exito {
+  background: #dcfce7;
+  color: #166534;
+  padding: 0.6rem;
+  border-radius: 4px;
+  margin-top: 1rem;
+}
+.vacio {
+  color: #888;
+  font-style: italic;
+}
+
+/* ===== Botones ===== */
+.botones {
+  display: flex;
+  gap: 0.5rem;
+  margin-top: 1rem;
+}
+.btn-primary,
+.btn-secondary,
+.btn-danger {
+  padding: 0.5rem 1.1rem;
+  border: none;
+  border-radius: 4px;
+  font-size: 0.9rem;
+  cursor: pointer;
+  font-weight: 500;
+}
+.btn-primary { background: #2b6cb0; color: #fff; }
+.btn-primary:hover { background: #1f4f86; }
+.btn-secondary { background: #6b7280; color: #fff; }
+.btn-secondary:hover { background: #4b5563; }
+.btn-danger { background: #dc2626; color: #fff; }
+.btn-danger:hover { background: #991b1b; }
+
+/* ===== Tabla de clientes ===== */
+.tabla {
+  width: 100%;
+  border-collapse: collapse;
+  margin-top: 0.75rem;
+}
+.tabla th,
+.tabla td {
+  text-align: left;
+  padding: 0.55rem 0.75rem;
+  border-bottom: 1px solid #e5e9ef;
+  font-size: 0.9rem;
+}
+.tabla th { background: #f0f3f7; }
+
+.badge {
+  padding: 0.2rem 0.6rem;
+  border-radius: 12px;
+  font-size: 0.75rem;
+  font-weight: 600;
+  text-transform: capitalize;
+}
+.badge-regular { background: #e5e9ef; color: #444; }
+.badge-vip { background: #fde68a; color: #92400e; }
+.badge-corporativo { background: #c7d2fe; color: #3730a3; }
+
+/* ===== Lista de empleados ===== */
+.lista-empleados {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+  gap: 1rem;
+  margin-top: 0.75rem;
+}
+.empleado-card {
+  border: 1px solid #d8dde3;
+  border-radius: 6px;
+  padding: 0.85rem 1rem;
+  background: #fafbfc;
+}
+.empleado-card header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 0.5rem;
+}
+.empleado-card h4 {
+  margin: 0;
+  color: #1f3a5f;
+}
+.empleado-card p {
+  margin: 0.2rem 0;
+  font-size: 0.85rem;
+}
+.estado-ok {
+  background: #dcfce7;
+  color: #166534;
+  padding: 0.15rem 0.5rem;
+  border-radius: 10px;
+  font-size: 0.7rem;
+}
+.estado-no {
+  background: #fee2e2;
+  color: #991b1b;
+  padding: 0.15rem 0.5rem;
+  border-radius: 10px;
+  font-size: 0.7rem;
+}
